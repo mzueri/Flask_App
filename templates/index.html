@@ -1,12 +1,14 @@
 
-<!DOCTYPE html>
 
-<html lang="en">
-    <head>
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <title>hello</title>
-    </head>
-    <body>
-        hello, world!
-    </body>
-</html>
+
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <form action="/" method="post"> <!-- sends a POST request to the "/"-route -->
+        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+        <button type="submit">Greet</button>
+    </form>
+
+{% endblock %}
+
