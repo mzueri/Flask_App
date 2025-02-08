@@ -1,14 +1,10 @@
-
-
-
 {% extends "layout.html" %}
 
 {% block body %}
 
-    <form action="/" method="post"> <!-- sends a POST request to the "/"-route -->
-        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
-        <button type="submit">Greet</button>
-    </form>
-
+    <h1>Current routes:</h1>
+    <ul>
+        <li>hello</li>
+        <li>greet</li>
+    </ul>
 {% endblock %}
-

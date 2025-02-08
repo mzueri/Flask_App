@@ -10,10 +10,15 @@ def hello_world():
     #return "hello world"
     return render_template("hello_world.html") # the render_template function goes into templates folder and searches for the file "index.html", will open it up and spit it out to the browser.
 
-@app.route("/", methods=["GET","POST"]) 
+@app.route("/greet/", methods=["GET","POST"]) 
+def greet():
+    if request.method=="POST": # for the sake of privacy we use not a GET request (we do not want the input to appear in the URL).
+        name=request.form.get("name") # note that for "POST" we need request.form instead of request.args as for "GET".
+    else:
+        name=None
+    return render_template("greet.html", name=name) 
+
+@app.route("/") 
 def index():
-    if request.method == "GET":
-        return render_template("index.html") 
-    elif request.method == "POST": # for the sake of privacy we use not a GET request (we do not want the input to appear in the URL).
-        return render_template("greet.html", name=request.form.get("name")) 
-        # note that for "POST" we need request.form instead of request.args as for "GET".
+    return render_template("index.html")
+        
