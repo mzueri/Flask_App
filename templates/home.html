@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    {% if username %}
+        <h1>Welcome, {{ username }}!</h1>
+        <h2>Current routes:</h2>
+        <ul>
+            <li>hello</li>
+            <li>greet</li>
+        </ul>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="/login/">Login</a>
+    {% endif %}
+{% endblock %}

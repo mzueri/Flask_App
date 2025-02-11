@@ -1,9 +1,44 @@
 # make sure the third party library "flask" is installed (otherwise use "pip install Flask"). 
 # use "flask run" in the terminal to run this app on your localserver and display in the browser.
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
+from flask_session import Session # for server-side sessions
+from datetime import timedelta
 
 app = Flask(__name__) # turn this file into a Flask application.
+
+
+app.secret_key = 'top_secret_key_007' # Secret key for session encryption
+app.config['SESSION_TYPE'] = 'filesystem' # Store session data in a local file
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=2) # Set timeout to 2 mins
+app.config['SESSION_FILE_DIR'] = './flask_sessions'  # Custom folder for session files
+Session(app) # Initialize session on server-side
+
+
+# Dummy user database (replace with a real database)
+users = {
+    "admin": "password123",
+    "user1": "mypassword"
+}
+
+
+@app.route("/") 
+def home():
+    if "username" in session: 
+        return render_template("home.html",username=session["username"])
+    return render_template("home.html",username=None)
+
+@app.route("/login/", methods=["GET","POST"]) 
+def login():
+    if request.method=="POST":
+        session["username"]=request.form.get("username")
+        session["password"]=request.form.get("password")
+        return redirect(url_for("home"))
+    return render_template("login.html")
+
+
+
+
 
 @app.route("/hello/") # here is code that I want the server to execute. 
 def hello_world():
@@ -17,8 +52,3 @@ def greet():
     else:
         name=None
     return render_template("greet.html", name=name) 
-
-@app.route("/") 
-def index():
-    return render_template("index.html")
-        

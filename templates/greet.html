@@ -5,9 +5,9 @@
     {% if name %}
         <h1>Hello, {{ name }}!</h1>
         <!-- Jinja Syntax -->
-        <a href="/greet/">Go Back</a>
+        <a href="/">Go to Home.</a>
     {% else %}
-        <form action="/greet/" method="post"> <!-- sends a POST request to the "/"-route -->
+        <form action="/greet/" method="post"> <!-- sends a POST request to the "/greet/"-route -->
             <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
             <button type="submit">Greet</button>
         </form>
