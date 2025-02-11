@@ -36,7 +36,11 @@ def login():
         return redirect(url_for("home"))
     return render_template("login.html")
 
-
+@app.route("/logout/") 
+def logout():
+    session.pop('username', None) # removes the username from the session. 
+    # session.clear()  # Uncomment this to remove all session data, terminating the session.
+    return redirect(url_for("home"))
 
 
 
