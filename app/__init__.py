@@ -14,47 +14,11 @@ def create_app():
     app.config['SESSION_FILE_DIR'] = './flask_sessions'  # Custom folder for session files
     Session(app) # Initialize session on server-side
 
+    # Import and register blueprints
+    from app.routes.auth import auth_bp
+    from app.routes.main import main_bp
 
-    # Dummy user database (replace with a real database)
-    users = {
-        "admin": "password123",
-        "user1": "mypassword"
-    }
-
-
-    @app.route("/") 
-    def home():
-        if "username" in session: 
-            return render_template("home.html",username=session["username"])
-        return render_template("home.html",username=None)
-
-    @app.route("/login/", methods=["GET","POST"]) 
-    def login():
-        if request.method=="POST":
-            session["username"]=request.form.get("username")
-            session["password"]=request.form.get("password")
-            return redirect(url_for("home"))
-        return render_template("login.html")
-
-    @app.route("/logout/") 
-    def logout():
-        session.pop('username', None) # removes the username from the session. 
-        # session.clear()  # Uncomment this to remove all session data, terminating the session.
-        return redirect(url_for("home"))
-
-
-
-    @app.route("/hello/") # here is code that I want the server to execute. 
-    def hello_world():
-        #return "hello world"
-        return render_template("hello_world.html") # the render_template function goes into templates folder and searches for the file "index.html", will open it up and spit it out to the browser.
-
-    @app.route("/greet/", methods=["GET","POST"]) 
-    def greet():
-        if request.method=="POST": # for the sake of privacy we use not a GET request (we do not want the input to appear in the URL).
-            name=request.form.get("name") # note that for "POST" we need request.form instead of request.args as for "GET".
-        else:
-            name=None
-        return render_template("greet.html", name=name) 
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(main_bp)
 
     return app
