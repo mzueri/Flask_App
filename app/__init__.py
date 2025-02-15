@@ -5,8 +5,7 @@ from flask_session import Session # for server-side sessions
 def create_app():
     app = Flask(__name__) # turn this file into a Flask application.
 
-    # Configurations of app.
-    app.secret_key = 'top_secret_key_007' # Secret key for session encryption, this should not be committed...
+    # Configurations of app. 
     app.config.from_object('app.default_settings')
 
     Session(app) # Initialize session on server-side
