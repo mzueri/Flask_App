@@ -1,3 +1,3 @@
 # Flask_App
 
-to run the app instance use first set secret key as environment variable (set FLASK_SECRET_KEY=...) and then run 'python run.py' in the terminal.
+To run the app instance, set secret key as environment variable (set FLASK_SECRET_KEY=...), then run 'python run.py' in the terminal.
