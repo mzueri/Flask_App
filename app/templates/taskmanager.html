@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Personal Task Manager</h1>
+    {% if is_empty %}
+        <p>Your task list is empty.</p>
+        <a href="/add_task/">Add a task</a>
+    {% else %}
+        <p>These are your current tasks:</p>
+        <a href="/add_task/">Add a task</a>
+    {% endif %}
+    <br>
+    <a href="/">Back</a>
+{% endblock %}

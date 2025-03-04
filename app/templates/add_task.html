@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form action="/add_task/" method="post">
+        <input autocomplete="off" autofocus task="task" placeholder="Task" type="text">
+        <input autocomplete="off" autofocus deadline="deadline" placeholder="Deadline" type="text">
+        <input autocomplete="off" autofocus priority="priority" placeholder="Priority" type="text">
+        <button type="submit">Submit task.</button>
+    </form>
+{% endblock %}
