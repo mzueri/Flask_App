@@ -7,6 +7,7 @@
         <a href="/add_task/">Add a task</a>
     {% else %}
         <p>These are your current tasks:</p>
+        {{ html_table | safe }}
         <a href="/add_task/">Add a task</a>
     {% endif %}
     <br>
