@@ -2,12 +2,42 @@
 
 {% block body %}
     <h1>Personal Task Manager</h1>
-    {% if is_empty %}
-        <p>Your task list is empty.</p>
+    {% if dict_tasks %}
+    <p>These are your current tasks:</p>
+        <table>
+            <tr>
+                {% for column in dict_tasks.keys() %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            {% for i in range(dict_tasks["Task"]|length) %}
+            <tr>
+                {% for key in dict_tasks.keys() %}
+                <td>{{ dict_tasks[key][i] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
         <a href="/add_task/">Add a task</a>
+
+        <!--
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                console.log("Page fully loaded, ready to manipulate elements!");
+            });
+
+            document.querySelectorAll(".task_data tbody tr").forEach(function (row) {
+                let deleteCell = document.createElement("td");
+                let deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.classList.add("delete-btn");
+                deleteCell.appendChild(deleteButton);
+                row.appendChild(deleteCell);
+            });
+        </script>
+        -->
     {% else %}
-        <p>These are your current tasks:</p>
-        {{ html_table | safe }}
+        <p>Your task list is empty.</p>
         <a href="/add_task/">Add a task</a>
     {% endif %}
     <br>
