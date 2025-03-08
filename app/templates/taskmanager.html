@@ -2,26 +2,45 @@
 
 {% block body %}
     <h1>Personal Task Manager</h1>
-    {% if dict_tasks %}
-    <p>These are your current tasks:</p>
+    {% if task_list | length == 0 %}
+        <p>Your task list is empty.</p>
+        <a href="/add_task/">Add a task</a>
+    {% else %}
+        <p>These are your current tasks:</p>
         <table>
             <tr>
-                {% for column in dict_tasks.keys() %}
+                {% for column in task_list[0].keys() %}
                 <th>{{ column }}</th>
                 {% endfor %}
             </tr>
-            {% for i in range(dict_tasks["Task"]|length) %}
+            {% for i in range(task_list|length) %}
             <tr>
-                {% for key in dict_tasks.keys() %}
-                <td>{{ dict_tasks[key][i] }}</td>
+                {% for key in task_list[i].keys() %}
+                <td>{{ task_list[i][key] }}</td>
                 {% endfor %}
+                <td>
+                    <form method="post" action="/delete_task/">
+                        <button type="submit" name="row_index" value="{{ i }}">Delete Task</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </table>
         <a href="/add_task/">Add a task</a>
 
+        <script>
+
+            
+            
+        </script>
         <!--
         <script>
+            document.getElementById("myButton").addEventListener("click", function() {
+    alert("Button clicked!");
+  });
+            function deleteRow() {
+                alert("Hello, World!");
+            }
             document.addEventListener("DOMContentLoaded", function() {
                 console.log("Page fully loaded, ready to manipulate elements!");
             });
@@ -36,9 +55,6 @@
             });
         </script>
         -->
-    {% else %}
-        <p>Your task list is empty.</p>
-        <a href="/add_task/">Add a task</a>
     {% endif %}
     <br>
     <a href="/">Back</a>

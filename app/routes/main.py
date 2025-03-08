@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template, request, session
-import pandas as pd
 
 main_bp = Blueprint("main", __name__)
 
