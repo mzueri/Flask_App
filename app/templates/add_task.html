@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form action="/add_task/" method="post">
+        <input autocomplete="off" autofocus name="task" placeholder="Task" type="text" required>
+        <br>
+        <label for="deadline">Deadline:</label>
+        <input type="date" id="deadline" name="deadline">
+        <br>
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <br>
+        <button type="submit">Submit task</button>
+    </form>
+{% endblock %}

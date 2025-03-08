@@ -2,14 +2,13 @@
 
 {% block body %}
     {% if username %}
-        <h1>Welcome, {{ username }}!</h1>
-        <h2>Current routes:</h2>
-        <ul>
-            <li>hello</li>
-            <li>greet</li>
-        </ul>
+        <h1>Welcome to my webpage, {{ username }}!</h1>
+        <h2>What would you like to do?</h2>
+        <a href="/taskmanager/">Go to your personal Task Manager</a>
+        <br>
         <a href="/logout/">Logout</a>
     {% else %}
+        <h1>Welcome to my webpage!</h1>
         <p>You are not logged in.</p>
         <a href="/login/">Login</a>
     {% endif %}
