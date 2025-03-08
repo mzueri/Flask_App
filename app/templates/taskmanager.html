@@ -9,52 +9,24 @@
         <p>These are your current tasks:</p>
         <table>
             <tr>
-                {% for column in task_list[0].keys() %}
-                <th>{{ column }}</th>
+                {% for col in task_cols %}
+                <th>{{ col }}</th>
                 {% endfor %}
             </tr>
-            {% for i in range(task_list|length) %}
+            {% for task in task_list %}
             <tr>
-                {% for key in task_list[i].keys() %}
-                <td>{{ task_list[i][key] }}</td>
+                {% for key,value in task.items() %}
+                <td>{{ value }}</td>
                 {% endfor %}
                 <td>
                     <form method="post" action="/delete_task/">
-                        <button type="submit" name="row_index" value="{{ i }}">Delete Task</button>
+                        <button type="submit" name="row_index" value="{{ loop.index0 }}">Delete Task</button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
         </table>
         <a href="/add_task/">Add a task</a>
-
-        <script>
-
-            
-            
-        </script>
-        <!--
-        <script>
-            document.getElementById("myButton").addEventListener("click", function() {
-    alert("Button clicked!");
-  });
-            function deleteRow() {
-                alert("Hello, World!");
-            }
-            document.addEventListener("DOMContentLoaded", function() {
-                console.log("Page fully loaded, ready to manipulate elements!");
-            });
-
-            document.querySelectorAll(".task_data tbody tr").forEach(function (row) {
-                let deleteCell = document.createElement("td");
-                let deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.classList.add("delete-btn");
-                deleteCell.appendChild(deleteButton);
-                row.appendChild(deleteCell);
-            });
-        </script>
-        -->
     {% endif %}
     <br>
     <a href="/">Back</a>
