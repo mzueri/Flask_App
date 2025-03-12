@@ -1,0 +1,52 @@
+/* General table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* First column is the widest */
+th:first-child, td:first-child {
+    width: 40%; /* Make the first column wider */
+}
+
+/* Styles for other columns */
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Make the last column (delete button column) appear outside the table */
+td:last-child {
+    background-color: transparent; /* No background color */
+    border: none;  /* Remove borders */
+    padding: 0; /* Remove padding */
+}
+
+/* Zebra-striping for even rows */
+tr:nth-child(even) td:not(:last-child) {  /* Exclude the last column (delete button) */
+    background-color: #f2f2f2;  /* Light grey for even rows */
+}
+
+/* Header row styling */
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Button styling */
+button {
+    background-color: yellow;
+    color: black;
+    border: 2px solid black; /* Black border around the button */
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Hover effect for the button */
+button:hover {
+    background-color: gold;
+}
