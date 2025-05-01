@@ -1,8 +1,13 @@
-import os
 from datetime import timedelta
+import json
+
+with open('secrets/secret.json', 'r') as file:
+    secrets = json.load(file)
 
 SESSION_FILE_DIR="app/flask_sessions" # Custom folder for session files
 SESSION_TYPE='filesystem' # Store session data in a local file
 PERMANENT_SESSION_LIFETIME=timedelta(minutes=2) # Set timeout to 2 mins
-SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'default_fallback_key') # Secret key for session encryption taken from environment variable (for security reasons, the key should never be committed). If no secret key is provided, then use 'top_secret_key_007' (default, not secure either).
+# There is also a second object called session which allows you to store information specific to a user from one request to the next. 
+# In order to use sessions you have to set a secret key.
+SECRET_KEY=secrets["SESSION_SECRET_KEY"] 
 

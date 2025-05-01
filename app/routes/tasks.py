@@ -1,11 +1,16 @@
 from flask import Blueprint, render_template, request, session
+from app.cache_storage import cache_tasks_db
 
 tasks_bp = Blueprint("tasks", __name__)
+
+
 
 task_cols=["Task","Deadline","Priority"]
 
 @tasks_bp.route("/taskmanager/")
 def taskmanager():
+    if "username" not in session:
+        return 'You need to sign in first. User <a href="/register">Sign up</a> to create an account or <a href="/login">Login</a> to use a existing account.'
     if "task_list" not in session:
         session["task_list"]=[]
     return render_template("taskmanager.html",task_list=session["task_list"],task_cols=task_cols)

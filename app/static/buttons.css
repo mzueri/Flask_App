@@ -1,0 +1,14 @@
+/* Button styling */
+button {
+    background-color: yellow;
+    color: black;
+    border: 2px solid black; /* Black border around the button */
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Hover effect for the button */
+button:hover {
+    background-color: gold;
+}

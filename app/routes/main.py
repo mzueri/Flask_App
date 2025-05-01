@@ -1,14 +1,15 @@
 from flask import Blueprint, render_template, request, session
 
-main_bp = Blueprint("main", __name__)
 
+main_bp = Blueprint("main", __name__)
 
 
 @main_bp.route("/")
 def home():
-    if "username" in session: 
-        return render_template("home.html",username=session["username"])
-    return render_template("home.html",username=None)
+    if "username" in session:
+        return render_template("home.html", signed_in=True)
+    else:
+        return render_template("home.html",signed_in=False)
 
 @main_bp.route("/hello/")
 def hello_world():
