@@ -5,12 +5,30 @@
     <head>
         <meta name="viewport" content="initial-scale=1, width=device-width">
         <title>hello</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='navigation_bar.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='tasks.css') }}">
     </head>
     <body>
+        <!-- Navigation bar at top of page -->
+        <div class="top-nav">
+            <a href="/">Home</a>
+            <a href="/taskmanager">Task Manager</a>
+
+            {% if signed_in %}
+                <div class="top-nav-right">
+                    <a>Account</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            {% else %}
+                <div class="top-nav-right">
+                    <a href="/register">Sign Up</a>
+                    <a href="/login">Login</a>
+                </div>
+            {% endif %}
+
+        </div>
+        
         {% block body %}{% endblock %}
     </body>
 </html>

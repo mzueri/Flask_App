@@ -1,18 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
+       
     {% if signed_in %}
-    <div class="top-right">
-        <a href="/logout">Logout</a>
-    </div>
+        <h1>Welcome, {{ session['username'] }}!</h1>
     {% else %}
-    <div class="top-right">
-        <a href="/register">Sign Up</a>
-        <a href="/login">Login</a>
-    </div>
+        <h1>Welcome!</h1>
     {% endif %}
-    <h1>Welcome to my webpage!</h1>
-    <h2>What would you like to do?</h2>
-    <a href="/taskmanager/">Go to your personal Task Manager</a>
-    <br>
+
 {% endblock %}
