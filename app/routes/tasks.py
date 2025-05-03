@@ -1,9 +1,6 @@
 from flask import Blueprint, render_template, request, session
-from app.cache_storage import cache_tasks_db
 
 tasks_bp = Blueprint("tasks", __name__)
-
-
 
 task_cols=["Task","Deadline","Priority"]
 
