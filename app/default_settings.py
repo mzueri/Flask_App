@@ -1,8 +1,11 @@
 from datetime import timedelta
 import json
 
-with open('secrets/secret.json', 'r') as file:
-    secrets = json.load(file)
+try:
+    with open('secrets.json', 'r') as file:
+        secrets = json.load(file) # returns a dictionary
+except FileNotFoundError:
+    secrets={"SESSION_SECRET_KEY": "007"}
 
 SESSION_FILE_DIR="app/flask_sessions" # Custom folder for session files
 SESSION_TYPE='filesystem' # Store session data in a local file
