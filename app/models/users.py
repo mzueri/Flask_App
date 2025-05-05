@@ -1,7 +1,6 @@
-
-from sqlalchemy import Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.extensions import db
+
 
 class User(db.Model):
     __tablename__ = 'users'  # needed, otherwise it would generate a table "user" (lowercase of class name).

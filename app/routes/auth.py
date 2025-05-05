@@ -17,7 +17,7 @@ def login():
         try:
             user=db.session.execute(db.select(User).filter_by(username=input_username)).scalar_one()
             if user.password==input_password:
-                session["username"] = input_username
+                session["user"]={"id":user.id,"username":input_username}
                 return redirect(url_for("main.home"))
             else:
                 return 'Invalid password. <a href="/login">Try again</a> or create an account <a href="/register">Create an account</a>. <a href="/">Home</a>'
@@ -42,7 +42,7 @@ def register():
         except:
             return 'Username already exists. <a href="/register">Try again</a>. <a href="/">Home</a>'
 
-        session['username'] = username
+        session['user'] = {"id":user.id,"username":username}
         return redirect(url_for("main.home"))
     
     return render_template("register.html")
@@ -51,6 +51,6 @@ def register():
 
 @auth_bp.route("/logout/")
 def logout():
-    session.pop('username', None) # removes the username from the session. 
+    session.pop("user", None) # removes the user from the session. 
     # session.clear()  # Uncomment this to remove all session data, terminating the session.
     return redirect(url_for("main.home"))

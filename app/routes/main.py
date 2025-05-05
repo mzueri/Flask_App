@@ -6,7 +6,7 @@ main_bp = Blueprint("main", __name__)
 
 @main_bp.route("/")
 def home():
-    if "username" in session:
+    if "user" in session:
         return render_template("home.html", signed_in=True)
     else:
         return render_template("home.html",signed_in=False)

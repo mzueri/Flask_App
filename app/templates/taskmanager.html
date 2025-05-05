@@ -15,12 +15,12 @@
             </tr>
             {% for task in task_list %}
             <tr>
-                {% for key,value in task.items() %}
-                <td>{{ value }}</td>
+                {% for col in task_cols %}
+                <td>{{ task[col] }}</td>
                 {% endfor %}
                 <td>
                     <form method="post" action="/delete_task/">
-                        <button type="submit" name="row_index" value="{{ loop.index0 }}">Delete Task</button>
+                        <button type="submit" name="task_id" value="{{ task.id }}">Delete Task</button>
                     </form>
                 </td>
             </tr>
