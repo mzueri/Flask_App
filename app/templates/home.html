@@ -7,5 +7,7 @@
     {% else %}
         <h1>Welcome!</h1>
     {% endif %}
+    <div class="quote">{{ daily_quote["text"] }}</div>
+    <div class="author">{{ daily_quote["author"] }}</div>
 
 {% endblock %}

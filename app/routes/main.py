@@ -1,15 +1,23 @@
 from flask import Blueprint, render_template, request, session
-
+from app.routes.quotes import quotes
+import random
+from datetime import date
 
 main_bp = Blueprint("main", __name__)
 
 
 @main_bp.route("/")
 def home():
+
+    # pick a random quote every other day.
+    today = date.today().toordinal()  # Converts to a number: days since year 1
+    random.seed(today)  # Set seed based on date
+    daily_quote = random.choice(quotes)
+
     if "user" in session:
-        return render_template("home.html", signed_in=True)
+        return render_template("home.html", signed_in=True, daily_quote=daily_quote)
     else:
-        return render_template("home.html",signed_in=False)
+        return render_template("home.html",signed_in=False, daily_quote=daily_quote)
 
 @main_bp.route("/hello/")
 def hello_world():
