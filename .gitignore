@@ -1,5 +1,5 @@
 # secrets
-secrets.json
+**/secrets.json
 
 # database files
 *.db
